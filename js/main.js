@@ -65,7 +65,7 @@ const addStation = () => {
 	stations.unshift(elem);
 	if (stations.length >= 2) {
 		stations[1].style.background = `hsl(${cycleColor}, 90%, 50%)`;
-		gameElem.style.setProperty('--last_cycle_color', `hsl(${cycleColor}, 60%, 50%)`);
+		document.body.style.setProperty('--last_cycle_color', `hsl(${cycleColor}, 60%, 50%)`);
 	}
 	
 	cycleColor += 33;
