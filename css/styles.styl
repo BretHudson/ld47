@@ -19,10 +19,14 @@ body
 	flex-direction: column
 	align-items: center
 	text-align: center
+	overflow: hidden
 	margin: 0
 	width: 100%
 	background: #202020
 	color: #fafafa
+	&.loading
+		*
+			transition: none !important
 
 h1, h2, h3, h4, h5, h6, p
 	margin: 0
@@ -39,18 +43,20 @@ header
 #game
 	position: relative
 	flex: 1 0 auto
+	--game_size: 27rem
 	&::after
 		position: absolute
 		content: ''
 		left: 50%
 		top: 50%
-		width: 500px
-		height: 500px
+		width: var(--game_size)
+		height: var(--game_size)
 		border: 3px solid rgba(white, 0.3)
 		border-radius: 50%
 		transform: translate(-50%, -50%)
 	#button
 		display: grid
+		z-index: 1
 		place-items: center
 		position: absolute
 		left: 50%
@@ -59,15 +65,34 @@ header
 		background: #EAEAEA
 		color: #202020
 		border-radius: 50%
-		$size = 4rem
+		$size = 7rem
+		font-size: 2rem
 		width: $size
 		height: $size
+		user-select: none
+		cursor: pointer
+		&:hover
+			background: #EACCCC
 
 .station
-	width: 100px
-	height: 100px
-	background: cyan
+#cursor
+	position: absolute
+	left: 50%
+	top: 50%
+	width: calc(var(--game_size) * 0.15)
+	height: calc(var(--game_size) * 0.15)
 	border-radius: 50%
+	transform: translate(-50%, -50%) rotate(calc(1 * var(--rotation))) translate(calc(-0.5 * var(--game_size)))
+	transition: 0.4s transform ease-in-out
+
+.station
+	background: cyan
+	z-index: 3
+
+#cursor
+	--rotation: "0deg" % ""
+	border: 3px solid white
+	z-index: 4
 
 footer
 	display: flex
